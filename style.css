@@ -4,16 +4,33 @@
 	box-sizing: border-box;
     font-family: "Times New Roman", Times, serif;
 }
-#banner nav{
-    background-color: aquamarine;
-    display: flex;
+
+.flex-container{
+	background-color: #c0d1ae;
+	display:flex;
 }
-#banner nav a{
-  color:black;
-  padding:30px;
+
+#banner div a{
+  color:#40534C;
+  padding:10px;
   flex:1;
   text-decoration:none;
   text-align:center;
   
 }
 
+.centered{
+	background-color: #AAB99A;
+	text-align: center;
+	font-weight:bold;
+  padding: 20px;
+}
+.centered h1{
+  color:#1A3636;
+  font-size: 50px;
+}
+
+.centered h2{
+  color:#1A3636;
+  font-size: 25px;
+}
