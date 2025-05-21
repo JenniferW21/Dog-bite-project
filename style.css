@@ -34,3 +34,13 @@
   color:#1A3636;
   font-size: 25px;
 }
+
+body {
+  background-color: #F0F0D7;
+  color: #AAB99A;
+}
+
+.dark-mode {
+  background-color: #727D73;
+  color: #D0DDD0;
+}

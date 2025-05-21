@@ -30,3 +30,8 @@ let chartGender = [
 function gender(){
   
 }
+
+function myFunction() {
+   var element = document.body;
+   element.classList.toggle("dark-mode");
+}
