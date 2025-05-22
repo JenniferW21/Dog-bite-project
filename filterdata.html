@@ -38,5 +38,37 @@
         </a>
         <a class="button" onclick="gender()"> Display </a>
       </div>
+      <div>
+        <textarea id="prompt" placeholder="Enter your prompt"></textarea>
+  <button id="generate">Generate</button>
+  <div id="result"></div>
+
+  <script>
+    const apiKey = 'YOUR_API_KEY'; // Replace with your actual API key
+    const generateButton = document.getElementById('generate');
+    const promptInput = document.getElementById('prompt');
+    const resultDiv = document.getElementById('result');
+
+    generateButton.addEventListener('click', async () => {
+      const prompt = promptInput.value;
+
+      const response = await fetch('https://api.openai.com/v1/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${apiKey}`
+        },
+        body: JSON.stringify({
+          model: 'text-davinci-003', // Or another suitable model
+          prompt: prompt,
+          max_tokens: 100
+        })
+      });
+
+      const data = await response.json();
+      resultDiv.textContent = data.choices[0].text;
+    });
+  </script>
+      </div>
       </body>
 </html>

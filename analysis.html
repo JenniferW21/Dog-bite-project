@@ -7,8 +7,14 @@
 		<link rel="icon" type="image/x-icon" href="img/doglogo.png">
 		<link href="style.css" rel="stylesheet" type="text/css" />
     
-   </head>
+    <link href="c3-eb4b9be8.css" rel="stylesheet" type="text/css" />
+    <script src="d3-5.8.2.min-c5268e33.js"></script>
+    <script src="c3.min-d2a1f852.js"></script>
 
+    <script src="helper.js"></script>
+    <script src="script.js"></script>
+   </head>
+   <body onload="init()">
    <!-- layout:
       NAV BAR: home, filterdata, analysis
       SEARCH BAR
@@ -16,7 +22,6 @@
       information//picture:filter
       picture//information:chart -->
 
-    <script src="script.js"></script>
     <div id="banner">
       <div class="container">
 			  <div class="centered">
@@ -29,3 +34,16 @@
 			      <a href="filterdata.html">FILTERDATA</a> 
 		       	<a href="analysis.html">ANALYSIS</a> 
 	  	</div>
+      <div>
+          <h3>Select Chart Type</h3>
+          <select id="chartType" style="width:200px;">
+            <option value="bar">Select Chart Type</option>
+            <option value="bar">Bar</option>
+            <option value="pie">Pie</option>
+          </select>
+           <a class="button" onclick="display"> Display </a>
+      </div>
+      <!-- output -->
+      <div id="chart"></div>
+    </body>
+</html>
