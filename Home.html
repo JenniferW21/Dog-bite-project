@@ -6,7 +6,15 @@
 		<title>DOG BITES</title>
 		<link rel="icon" type="image/x-icon" href="img/doglogo.png">
 		<link href="style.css" rel="stylesheet" type="text/css" />
-    
+    <!-- css -->
+     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+     <!-- js -->
+       <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+
    </head>
 
    <!-- layout:
@@ -29,27 +37,56 @@
 			      <a href="filterdata.html">FILTERDATA</a> 
 		       	<a href="analysis.html">ANALYSIS</a> 
 	  	</div>
-      <div> 
-      <div> <h3>Agency Background</h3> <br> 
-        <p> The Agency that proivided this data set is the Department of Health and Mental Hygiene(DOHMH). <br>
-        The DOHMH are one of the world's largest public health agencies. <br>
-        DOHMH are respnsible for things such as: <br>
-        -Birth Certificates
-        -Dog Licenses
-        -Restaurant Inspection & Enforcement </p>
 
+    </div>
+    <nav class="description">
+  <div>
+    <div class="flip-card">
+      <div class="flip-front">
+        <div id="fitted-card" class="container">
+          <h3>Agency Background</h3> 
+          <p> The Agency that proivided this data set is the Department of Health and Mental Hygiene(DOHMH). <br>
+          The DOHMH are one of the world's largest public health agencies. <br>
+          DOHMH are respnsible for things such as: <br>
+          -Birth Certificates
+          -Dog Licenses
+          -Restaurant Inspection & Enforcement </p>
+        </div>
+      </div>
+      <div class="flip-back"> </div>
+  </div>
+
+
+
+  <div>
+    <div class="flip-card">
+      <div class="flip-front">
+        <div id="fitted-card" class="container">
         <h3>Datasets</h3>
         <p>
         -Use of Pie charts(borough in which it occured)<br>
         -Timeline Chart (how often the accidents occured: 2015-present) </p>
+        </div>
+      </div>
+      <div class="flip-back"> </div>
+  </div>
 
+
+  <div>
+    <div class="flip-card">
+      <div class="flip-front">
+        <div id="fitted-card" class="container">
         <h3>Importance & Relevance </h3>
         <p>The importance of this dataset is to reveal when and where the dog bite occured <br>
            This dataset will also show the type of dog breed that caused bites </p>
+        </div>
       </div>
-    </div>
+      <div class="flip-back"> </div>
+  </div>
+</nav>
+
+<nav>
+   <div id="map"></div>
+</nav>
    </body>
 </html>
-
-
-

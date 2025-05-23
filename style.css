@@ -35,6 +35,27 @@
   font-size: 25px;
 }
 
+.flip-card{
+  width: 50%;
+  box-shadow:#727D73 0px 3px 10px;
+  text-align: center;
+  cursor: pointer;
+  transform-style: perserve-3d;
+  background: #D0DDD0;
+  border-radius:10px;
+  transition: 0.5s;
+  margin: 5px;
+  padding: 3px;
+  color:#485049
+}
+#fitted-card h3 p{
+  font-size:25px;
+}
+
+#map { 
+  height: 200px; 
+}
+
 body {
   background-color: #F0F0D7;
   color: #AAB99A;
