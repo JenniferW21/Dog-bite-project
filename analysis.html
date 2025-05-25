@@ -6,34 +6,36 @@
 		<title>DOG BITES</title>
 		<link rel="icon" type="image/x-icon" href="img/doglogo.png">
 		<link href="style.css" rel="stylesheet" type="text/css" />
-    
+
+    <!-- Import the files -->
     <link href="c3-eb4b9be8.css" rel="stylesheet" type="text/css" />
     <script src="d3-5.8.2.min-c5268e33.js"></script>
     <script src="c3.min-d2a1f852.js"></script>
-
-    <script src="helper.js"></script>
-    <script src="script.js"></script>
-   </head>
-   <body onload="init()">
+    <script src="analysis.js"></script>
+  </head>
+  <body onload="init()">
    <!-- layout:
       NAV BAR: home, filterdata, analysis
       SEARCH BAR
       picture//information:description
       information//picture:filter
       picture//information:chart -->
-
+    <!-- Banner -->
     <div id="banner">
       <div class="container">
 			  <div class="centered">
-              <h1>DOG BITES</h1>
-			    <h2> Analysis </h2> </div>
-	  	</div>
-        
-      <div class="flex-container" id="navbar" >
-            <a href="Home.html">HOME</a>
-			      <a href="filterdata.html">FILTERDATA</a> 
-		       	<a href="analysis.html">ANALYSIS</a> 
-	  	</div>
+            <h1>DOG BITES</h1>
+			      <h2> Analysis </h2> 
+        </div>
+      </div>  
+	  </div>
+  
+    <div class="flex-container" id="navbar" >
+          <a href="Home.html">HOME</a>
+			    <a href="filterdata.html">FILTERDATA</a> 
+		      <a href="analysis.html">ANALYSIS</a> 
+	  </div>
+    <!-- Chart -->
       <div>
           <h3>Select Chart Type</h3>
           <select id="chartType" style="width:200px;">
@@ -45,5 +47,5 @@
       </div>
       <!-- output -->
       <div id="chart"></div>
-    </body>
+  </body>
 </html>
