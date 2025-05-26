@@ -25,27 +25,96 @@
       <div class="container">
 			  <div class="centered">
             <h1>DOG BITES</h1>
-			      <h2> Analysis </h2> 
+			      <h2>Analysis</h2> 
         </div>
       </div>  
 	  </div>
   
     <div class="flex-container" id="navbar" >
           <a href="Home.html">HOME</a>
-			    <a href="filterdata.html">FILTERDATA</a> 
+			    <a href="filterdata.html">FILTER DATA</a> 
 		      <a href="analysis.html">ANALYSIS</a> 
 	  </div>
-    <!-- Chart -->
-      <div>
-          <h3>Select Chart Type</h3>
-          <select id="chartType" style="width:200px;">
-            <option value="bar">Select Chart Type</option>
-            <option value="bar">Bar</option>
-            <option value="pie">Pie</option>
+
+    <!-- Analysis -->
+     <!-- line 40 to 44  -->
+    <div class="container subbanner">
+      <h3>Interactive Data Analysis</h3>
+      <p>Explore different aspects of the NYC Dog Bite dataset through various visualizations. Select the type of analysis, chart style, and apply filters to view different perspectives of the data.</p>
+      
+      <div class="filter-controls">
+        <div>
+          <label>Analysis Type:</label>
+          <select id="analysis-type" onchange="changeAnalysis()">
+            <option value="breed">Dog Breeds</option>
+            <option value="borough">Borough Distribution</option>
+            <option value="gender">Gender Distribution</option>
+            <option value="timeline">Incidents Over Time</option>
+            <option value="spayneuter">Spay/Neuter Status</option>
           </select>
-           <a class="button" onclick="display"> Display </a>
+        </div>
+        
+        <div>
+          <label>Chart Type:</label>
+          <select id="chart-type" onchange="changeAnalysis()">
+            <option value="pie">Pie Chart</option>
+            <option value="bar">Bar Chart</option>
+            <option value="donut">Donut Chart</option>
+            <option value="line">Line Chart</option>
+            <option value="area">Area Chart</option>
+          </select>
+        </div>
       </div>
-      <!-- output -->
-      <div id="chart"></div>
+
+      <!-- Advanced Filters -->
+      <div class="advanced-filters">
+        <h4>Filter Data</h4>
+        <div class="filter-grid">
+          <div>
+            <label for="filter-borough">Borough:</label>
+            <select id="filter-borough" onchange="applyFilters()">
+              <option value="">All Boroughs</option>
+              <option value="Brooklyn">Brooklyn</option>
+              <option value="Manhattan">Manhattan</option>
+              <option value="Queens">Queens</option>
+              <option value="Bronx">Bronx</option>
+              <option value="Staten Island">Staten Island</option>
+            </select>
+          </div>
+          
+          <div>
+            <label for="filter-gender">Gender:</label>
+            <select id="filter-gender" onchange="applyFilters()">
+              <option value="">All Genders</option>
+              <option value="M">Male</option>
+              <option value="F">Female</option>
+              <option value="U">Unknown</option>
+            </select>
+          </div>
+          
+          <div>
+            <label for="filter-spayneuter">Spay/Neuter Status:</label>
+            <select id="filter-spayneuter" onchange="applyFilters()">
+              <option value="">All</option>
+              <option value="true">Spayed/Neutered</option>
+              <option value="false">Not Spayed/Neutered</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Analysis Content -->
+    <div class="container">
+      <div class="analysis-container">
+        <div id="chart"></div>
+        <div id="analysis-text" class="analysis-text"></div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer" class="container center">
+      <h3>NYC Open Data Project</h3>
+    </div>
   </body>
 </html>
