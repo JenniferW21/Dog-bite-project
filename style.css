@@ -9,15 +9,19 @@
 	display:flex;
 }
 
-#banner div a{
-  color:#40534C;
+#banner div b{
   padding:10px;
   flex:1;
   text-decoration:none;
   text-align:center;
-  
 }
+#banner div a{
+  color:#40534C;
 
+  flex:1;
+  text-decoration:none;
+  text-align:center;
+}
 .centered{
 	background-color: #AAB99A;
 	text-align: center;
@@ -35,7 +39,6 @@
 }
 
 .flip-card{
-  width: 50%;
   box-shadow:#727D73 0px 3px 10px;
   text-align: center;
   cursor: pointer;
@@ -51,10 +54,6 @@
   font-size:25px;
 }
 
-#map { 
-  height: 200px; 
-}
-
 body {
   background-color: #F0F0D7;
   color: #AAB99A;
@@ -62,7 +61,32 @@ body {
 
 #mapid {
   height: 400px;
-  width: 100%; 
+
 }
 
+
+        /* CSS goes here */
+        .container {
+            display: flex; /* This is the magic line for Flexbox! */
+            justify-content: space-around; /* Distributes space between/around items */
+            align-items: flex-start; /* Aligns items to the top if they have different heights */
+ 
+        }
+
+        .left-div, .right-div {
+            flex: 1; /* Allows each div to grow and shrink, taking equal space */
+
+        }
+        
+        /* Basic Responsiveness (Optional but Recommended) */
+        @media (max-width: 50%) {
+            .container {
+                flex-direction: column; /* Stack divs vertically on small screens */
+                align-items: center; /* Center them when stacked */
+            }
+            .left-div, .right-div {
+                width: 100%; /* Make them wider when stacked */
+                margin-bottom: 10px; /* Add space between stacked divs */
+            }
+        }
 
