@@ -5,55 +5,51 @@
 		<meta name="viewport" content="width=device-width">
 		<title>DOG BITES</title>
 		<link rel="icon" type="image/x-icon" href="img/doglogo.png">
-		<link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="home.css" rel="stylesheet" type="text/css" />
     <script src="home.js"></script>
 
-    <!-- files -->
+    <!-- files for icons -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 
-
+  </head>
    <!-- layout:
       NAV BAR: home, filterdata, analysis
       SEARCH BAR
       picture//information:description
       information//picture:filter
       picture//information:chart -->
-
-    <script src="script.js"></script>
+  <body>
     <div id="banner">
       <div class="navcontainer">
 			  <div class="centered">
               <h1>DOG BITES</h1>
 			    <h2> Home </h2> </div>
-	  	</div>
-        
-      <div class="flex-container" id="navbar" >
-            <b><a href="Home.html">HOME</a></b>
-			      <b><a href="filterdata.html">FILTERDATA</a> </b>
-		       	<b><a href="analysis.html">ANALYSIS</a> </b>
-	  	</div>
-
+	  	  </div>
+        <div class="flex-container" id="navbar" >
+            <b><a href="Home.html" class="active"><i class="fas fa-home"></i> HOME</a></b>
+			      <b><a href="filterdata.html"><i class="fas fa-filter"></i> FILTERDATA</a> </b>
+		       	<b><a href="analysis.html"><i class="fas fa-chart-bar"></i> ANALYSIS</a> </b>
+	  	  </div>
+      </div>
     </div>
 
-
-<div class="container">
-    <div class="left-div">
-    <div>
+    <div class="container">
       <div class="flip-card">
         <div id="fitted-card">
           <h3>Agency Background</h3> 
           <p> The Agency that proivided this data set is the Department of Health and Mental Hygiene(DOHMH). <br>
-          The DOHMH are one of the world's largest public health agencies. <br>
-          DOHMH are respnsible for things such as: <br>
-          -Birth Certificates
-          -Dog Licenses
-          -Restaurant Inspection & Enforcement </p>
+              The DOHMH are one of the world's largest public health agencies.</p>
+          <P> DOHMH are respnsible for things such as: 
+              - Birth Certificates<br>
+              - Dog Licenses<br>
+              - Restaurant Inspection & Enforcement<br>
+              - Public Health Research<br>
+              - Disease Prevention<br>
+              - Health Education </p>
         </div>
       </div>
-    </div>
-
 
 
     <div>
@@ -80,75 +76,39 @@
         </div>
       </div>
     </div>
-</div>
+  </div>
 
 
 
 
-    <div class="right-div">
-      <h3 style="text-align:center; color:#40534C;">Locations of  Department of Health and Mental Hygiene</h3>
-      <div id="mapid"></div>
-    </div>
-</div>
+    
 
 
 
 
-
-
-
-
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
-    <script>
-        const mymap = L.map('mapid').setView([40.7128, -74.0060], 10);
-
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(mymap);
-
-        // Define locations as an array of objects
-        const locations = [
-            {
-                name: "DOHMH #2",
-                lat: 40.7542913,
-                lng: -73.8720661,
-                description: "34-35 Junction Blvd, Flushing, NY 11372"
-            },
-            {
-                name: "DOHMH #1",
-                lat: 40.7038236,
-                lng: -73.8007284,
-                description: "90-38, 90-44 Parsons Blvd, Jamaica, NY 11432"
-            },
-            {
-                name: "DOHMH #3",
-                lat: 40.749511,
-                lng: -73.9390798,
-                description: "42-09 28th St, Long Island City, NY 11101"
-            },
-            {
-                name: "DOHMH #4",
-                lat: 40.7156716,
-                lng: -74.0026046,
-                description: "125 Worth St, New York, NY 10013"
-            }
-        ];
-
-        // Loop through the locations and add a marker with a popup for each
-        locations.forEach(location => {
-            const marker = L.marker([location.lat, location.lng]).addTo(mymap);
-            marker.bindPopup(`<b>${location.name}</b><br>${location.description}`);
-        });
-
-        // Optional: Fit the map bounds to include all markers
-        // This is useful if you don't know the exact center/zoom beforehand
-        const group = new L.featureGroup(locations.map(location => L.marker([location.lat, location.lng])));
-        mymap.fitBounds(group.getBounds());
-
-    </script>
-
-
-   </body>
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>About US</h4>
+          <p>This is a dog bite data website that uses public data from 
+          <a style="text-decoration: none; color: var(--background-color);" href="https://data.cityofnewyork.us/Health/DOHMH-Dog-Bite-Data/rsgh-akpg/about_data">NYC OpenData.</a></p>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="Home.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="filterdata.html"><i class="fas fa-filter"></i> Filter Data</a></li>
+            <li><a href="analysis.html"><i class="fas fa-chart-bar"></i> Analysis</a></li>
+          </ul>
+        </div>
+        
+        
+      </div>
+      
+      <div class="footer-bottom">
+        <p>Haoxuan Zheng & Jennifer Wang &copy; 2025 NYC Open Data Project - Dog Bites.</p>
+      </div>
+    </footer>
+  </body>
 </html>

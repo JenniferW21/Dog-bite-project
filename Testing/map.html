@@ -1,0 +1,69 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+
+    <div class="right-div">
+      <h3 style="text-align:center; color:#40534C;">Locations of  Department of Health and Mental Hygiene</h3>
+      <div id="mapid"></div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <script>
+        const mymap = L.map('mapid').setView([40.7128, -74.0060], 10);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(mymap);
+
+        // Define locations as an array of objects
+        const locations = [
+            {
+                name: "DOHMH #2",
+                lat: 40.7542913,
+                lng: -73.8720661,
+                description: "-35 Junction 34Blvd, Flushing, NY 11372"
+            },
+            // {
+            //     name: "DOHMH #1",
+            //     lat: 40.7038236,
+            //     lng: -73.8007284,
+            //     description: "90-38, 90-44 Parsons Blvd, Jamaica, NY 11432"
+            // },
+            // {
+            //     name: "DOHMH #3",
+            //     lat: 40.749511,
+            //     lng: -73.9390798,
+            //     description: "42-09 28th St, Long Island City, NY 11101"
+            // },
+            // {
+            //     name: "DOHMH #4",
+            //     lat: 40.7156716,
+            //     lng: -74.0026046,
+            //     description: "125 Worth St, New York, NY 10013"
+            // }
+        ];
+
+        // Loop through the locations and add a marker with a popup for each
+        locations.forEach(location => {
+            const marker = L.marker([location.lat, location.lng]).addTo(mymap);
+            marker.bindPopup(`<b>${location.name}</b><br>${location.description}`);
+        });
+
+        // Optional: Fit the map bounds to include all markers
+        // This is useful if you don't know the exact center/zoom beforehand
+        const group = new L.featureGroup(locations.map(location => L.marker([location.lat, location.lng])));
+        mymap.fitBounds(group.getBounds());
+
+    </script>
