@@ -22,24 +22,24 @@
     <div id="banner">
       <div class="navcontainer">
 			  <div class="centered">
-            <h1>DOG BITES</h1>
-			      <h2> Analysis </h2> 
-        </div>
-      </div>  
+              <h1>DOG BITES</h1>
+			    <h2> FilterData </h2> </div>
+	  	  </div>
+        <div class="flex-container" id="navbar" >
+            <b><a href="Home.html" class="active"><i class="fas fa-home"></i> HOME</a></b>
+			      <b><a href="filterdata.html"><i class="fas fa-filter"></i> FILTERDATA</a> </b>
+		       	<b><a href="analysis.html"><i class="fas fa-chart-bar"></i> ANALYSIS</a> </b>
+	  	  </div>
+      </div>
+    </div>
 
-  
-    <div class="flex-container" id="navbar" >
-          <b><a href="Home.html">HOME</a></b>
-			    <b><a href="filterdata.html">FILTERDATA</a> </b>
-		      <b><a href="analysis.html">ANALYSIS</a> </b>
-	  </div>
     <!-- Search -->
-      <div class="">
+      <div class="centered">
           <h3>Dog Bite Incidents: Detailed Information</h3>
           <p>This page allows you to view individual dog bite incidents reported in New York City. You can use the filters below to narrow down the results based on various criteria such as the dog's breed, age, gender, and the borough where the incident occurred.</p>
           <input type="text" id="breed" placeholder="e.g., PIT BULL">
           <input type="text" id="age" placeholder="e.g., 5">
-          <label for="borough-filter">Borough:</label>
+          <label>Borough:</label>
             <select id="borough-filter">
               <option value="">All Boroughs</option>
               <option value="BROOKLYN">Brooklyn</option>
@@ -58,8 +58,8 @@
           <button class="button" onclick="search()">Search</button>        
       </div>
       <!-- output -->
-    <div id="output" >
       <div id="search" class="card-container"></div>
-    </div>
+    
+    
   </body>
 </html>
