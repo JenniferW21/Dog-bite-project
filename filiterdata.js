@@ -32,13 +32,13 @@ function createCard(incident) {
       <p><strong>Zipcode:</strong> ${incident.zipcode || 'Unknown'}</p>
     </div>
   `;
-  
+    let back= `<div class="map" id=${incident.zipcode}</`
   card.innerHTML = front;
   return card;
 
-  let back = 
-  
+  showmap(incident.zipcode
 }
+
 function map(){
   const mymap = L.map('mapid').setView([40.7128, -74.0060], 10);
 
