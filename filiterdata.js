@@ -4,6 +4,7 @@ async function init() {
   let link = "https://data.cityofnewyork.us/resource/rsgh-akpg.json";
   info = await fetch(link);
   data = await info.json();
+  displayAllData(data); // Ensure data is displayed on load
 }
 
 function displayAllData(data) {
@@ -20,7 +21,7 @@ function createCard(incident) {
   let card = document.createElement('div');
   card.className = 'flip-card';
   
-  let front = `
+  let content = `
     <div class="card-content">
       <h3>Dog Bite Incident</h3>
       <p><strong>Date:</strong> ${formatDate(incident.dateofbite)}</p>
@@ -30,69 +31,64 @@ function createCard(incident) {
       <p><strong>Spayed/Neutered:</strong> ${incident.spayneuter ? 'Yes' : 'No'}</p>
       <p><strong>Borough:</strong> ${incident.borough}</p>
       <p><strong>Zipcode:</strong> ${incident.zipcode || 'Unknown'}</p>
+      <div class="map-container" style="width:100%;height:200px;margin-top:10px;">
+        <div id="map-${incident.zipcode}" class="incident-map" style="width:100%;height:100%;"></div>
+      </div>
     </div>
   `;
   
-  card.innerHTML = front;
-  return card;
-
-  let back = 
+  card.innerHTML = content;
   
-}
-function map(){
-  const mymap = L.map('mapid').setView([40.7128, -74.0060], 10);
+  // Initialize map after card is added to DOM
+  setTimeout(() => {
+    const mapId = `map-${incident.zipcode}`;
+    const mapElement = document.getElementById(mapId);
+    if (mapElement && !mapElement.dataset.mapInitialized) {
+      initializeMap(mapId, incident);
+      mapElement.dataset.mapInitialized = 'true';
+    }
+  }, 0);
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(mymap);
-
-        // Define locations as an array of objects
-        const locations = [
-            {
-                name: "DOHMH #1",
-                lat: 40.7542913,
-                lng: -73.8720661,
-                description: "-35 Junction 34Blvd, Flushing, NY 11372"
-            },
-            // {
-            //     name: "DOHMH #2",
-            //     lat: 40.7038236,
-            //     lng: -73.8007284,
-            //     description: "90-38, 90-44 Parsons Blvd, Jamaica, NY 11432"
-            // },
-            // {
-            //     name: "DOHMH #3",
-            //     lat: 40.749511,
-            //     lng: -73.9390798,
-            //     description: "42-09 28th St, Long Island City, NY 11101"
-            // },
-            // {
-            //     name: "DOHMH #4",
-            //     lat: 40.7156716,
-            //     lng: -74.0026046,
-            //     description: "125 Worth St, New York, NY 10013"
-            // }
-        ];
-
-        // Loop through the locations and add a marker with a popup for each
-        locations.forEach(location => {
-            const marker = L.marker([location.lat, location.lng]).addTo(mymap);
-            marker.bindPopup(`<b>${location.name}</b><br>${location.description}`);
-        });
-
-        // Optional: Fit the map bounds to include all markers
-        // This is useful if you don't know the exact center/zoom beforehand
-        const group = new L.featureGroup(locations.map(location => L.marker([location.lat, location.lng])));
-        mymap.fitBounds(group.getBounds());
-
+  return card;
 }
 
+function initializeMap(mapId, incident) {
+  // Use a static mapping for demonstration; in production, use a geocoding API
+  const coordinates = getCoordinatesForZipcode(incident.zipcode);
+  const map = L.map(mapId).setView([coordinates.lat, coordinates.lng], 13);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+  L.marker([coordinates.lat, coordinates.lng])
+    .addTo(map)
+    .bindPopup(`Dog Bite Incident<br>Date: ${formatDate(incident.dateofbite)}<br>Breed: ${incident.breed || 'Unknown'}`);
+}
 
-
-
-
-
+function getCoordinatesForZipcode(zipcode) {
+  // This is a simplified version - you should use a proper geocoding service
+  const coordinates = {
+    '10001': { lat: 40.7505, lng: -73.9965 },
+    '10002': { lat: 40.7174, lng: -73.9861 },
+    '10003': { lat: 40.7317, lng: -73.9890 },
+    '10004': { lat: 40.6892, lng: -74.0155 },
+    '10005': { lat: 40.7064, lng: -74.0086 },
+    '11201': { lat: 40.6944, lng: -73.9903 },
+    '11211': { lat: 40.7127, lng: -73.9571 },
+    '11217': { lat: 40.6782, lng: -73.9801 },
+    '11238': { lat: 40.6847, lng: -73.9654 },
+    '10451': { lat: 40.8245, lng: -73.9224 },
+    '10452': { lat: 40.8373, lng: -73.9190 },
+    '10453': { lat: 40.8505, lng: -73.9115 },
+    '11101': { lat: 40.7505, lng: -73.9404 },
+    '11102': { lat: 40.7720, lng: -73.9307 },
+    '11354': { lat: 40.7644, lng: -73.8305 },
+    '10301': { lat: 40.6431, lng: -74.0744 },
+    '10302': { lat: 40.5884, lng: -74.1389 },
+    '10304': { lat: 40.5195, lng: -74.1918 }
+  };
+  return coordinates[zipcode] || { lat: 40.7128, lng: -74.0060 }; // Default to NYC center
+}
 
 function formatDate(dateString) {
   if (!dateString) return 'Unknown';
@@ -130,3 +126,5 @@ function search() {
   
   displayAllData(filteredData);
 }
+
+init();
