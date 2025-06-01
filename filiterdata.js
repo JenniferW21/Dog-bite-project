@@ -1,19 +1,66 @@
 let data;
+let currentPage = 1;
+const itemsPerPage = 50;
+let filteredData = [];
 
 async function init() {
   let link = "https://data.cityofnewyork.us/resource/rsgh-akpg.json";
   info = await fetch(link);
   data = await info.json();
+  filteredData = [...data];
+  displayData();
 }
 
-function displayAllData(data) {
+function displayData() {
   let searchDiv = document.getElementById('search');
-  searchDiv.innerHTML = '';
   
-  data.forEach(incident => {
+  // If it's the first page, clear the container
+  if (currentPage === 1) {
+    searchDiv.innerHTML = '';
+  }
+  
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentItems = filteredData.slice(startIndex, endIndex);
+  
+  currentItems.forEach(incident => {
     let card = createCard(incident);
     searchDiv.appendChild(card);
   });
+  
+  updateLoadMoreButton();
+}
+
+function updateLoadMoreButton() {
+  let loadMoreDiv = document.getElementById('load-more');
+  if (!loadMoreDiv) {
+    loadMoreDiv = document.createElement('div');
+    loadMoreDiv.id = 'load-more';
+    loadMoreDiv.style.textAlign = 'center';
+    loadMoreDiv.style.padding = '20px';
+    document.body.appendChild(loadMoreDiv);
+  }
+  
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+  const hasMorePages = currentPage < totalPages;
+  
+  loadMoreDiv.innerHTML = '';
+  
+  if (hasMorePages) {
+    const loadMoreButton = document.createElement('button');
+    loadMoreButton.className = 'load-more-button';
+    loadMoreButton.textContent = `Load More (${currentPage * itemsPerPage} of ${filteredData.length} items)`;
+    loadMoreButton.onclick = () => {
+      currentPage++;
+      displayData();
+    };
+    loadMoreDiv.appendChild(loadMoreButton);
+  } else {
+    const endMessage = document.createElement('p');
+    endMessage.className = 'end-message';
+    endMessage.textContent = `Showing all ${filteredData.length} items`;
+    loadMoreDiv.appendChild(endMessage);
+  }
 }
 
 function createCard(incident) {
@@ -21,22 +68,45 @@ function createCard(incident) {
   card.className = 'flip-card';
   
   let front = `
-    <div class="card-content">
-      <h3>Dog Bite Incident</h3>
-      <p><strong>Date:</strong> ${formatDate(incident.dateofbite)}</p>
-      <p><strong>Breed:</strong> ${incident.breed || 'Unknown'}</p>
-      <p><strong>Age:</strong> ${incident.age || 'Unknown'}</p>
-      <p><strong>Gender:</strong> ${formatGender(incident.gender)}</p>
-      <p><strong>Spayed/Neutered:</strong> ${incident.spayneuter ? 'Yes' : 'No'}</p>
-      <p><strong>Borough:</strong> ${incident.borough}</p>
-      <p><strong>Zipcode:</strong> ${incident.zipcode || 'Unknown'}</p>
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <div class="card-content">
+          <h3>Dog Bite Incident</h3>
+          <p><strong>Date:</strong> ${formatDate(incident.dateofbite)}</p>
+          <p><strong>Breed:</strong> ${incident.breed || 'Unknown'}</p>
+          <p><strong>Age:</strong> ${incident.age || 'Unknown'}</p>
+          <p><strong>Gender:</strong> ${formatGender(incident.gender)}</p>
+          <p><strong>Spayed/Neutered:</strong> ${incident.spayneuter ? 'Yes' : 'No'}</p>
+          <p><strong>Borough:</strong> ${incident.borough}</p>
+          <p><strong>Zipcode:</strong> ${incident.zipcode || 'Unknown'}</p>
+        </div>
+      </div>
+      <div class="flip-card-back">
+        <div class="map-container" id="map-${incident.zipcode}"></div>
+      </div>
     </div>
   `;
-    let back= `<div class="map" id=${incident.zipcode}</`
+  
   card.innerHTML = front;
+  
+  // Initialize map for this card after it's added to the DOM
+  setTimeout(() => {
+    const mapContainer = card.querySelector(`#map-${incident.zipcode}`);
+    if (mapContainer) {
+      const map = L.map(mapContainer).setView([40.7128, -74.0060], 13);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+      
+      // Add a marker for the incident location (using zipcode center as approximation)
+      // Note: In a real application, you'd want to geocode the zipcode to get exact coordinates
+      L.marker([40.7128, -74.0060]).addTo(map)
+        .bindPopup(`Dog Bite Incident in ${incident.borough}<br>Zipcode: ${incident.zipcode}`);
+    }
+  }, 100);
+  
   return card;
-
-  showmap(incident.zipcode
 }
 
 function map(){
@@ -88,12 +158,6 @@ function map(){
 
 }
 
-
-
-
-
-
-
 function formatDate(dateString) {
   if (!dateString) return 'Unknown';
   let date = new Date(dateString);
@@ -115,7 +179,7 @@ function search() {
   let boroughFilter = document.getElementById('borough-filter').value;
   let genderFilter = document.getElementById('gender-filter').value;
   
-  let filteredData = data.filter(incident => {
+  filteredData = data.filter(incident => {
     let breedMatch = !breedFilter || 
       (incident.breed && incident.breed.toLowerCase().includes(breedFilter));
     let ageMatch = !ageFilter || 
@@ -128,5 +192,6 @@ function search() {
     return breedMatch && ageMatch && boroughMatch && genderMatch;
   });
   
-  displayAllData(filteredData);
+  currentPage = 1; // Reset to first page when searching
+  displayData();
 }
