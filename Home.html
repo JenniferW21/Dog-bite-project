@@ -8,6 +8,16 @@
     <link href="home.css" rel="stylesheet" type="text/css" />
     <script src="home.js"></script>
     <!-- Translate -->
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+          pageLanguage: 'en',
+          includedLanguages: 'es,zh-CN,fr,de,it,ja,ko,pt,ru,ar', // Add languages you want to support
+          layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+          autoDisplay: false
+        }, 'google_translate_element');
+      }
+    </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <!-- files for icons -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,10 +32,6 @@
       information//picture:filter
       picture//information:chart -->
   <body>
-    <div id="google_translate_element"></div>
-
-
-
     <div id="banner">
       <div class="navcontainer">
 			  <div class="centered">
@@ -36,7 +42,6 @@
             <b><a href="Home.html" class="active"><i class="fas fa-home"></i> HOME</a></b>
 			      <b><a href="filterdata.html"><i class="fas fa-filter"></i> FILTERDATA</a> </b>
 		       	<b><a href="analysis.html"><i class="fas fa-chart-bar"></i> ANALYSIS</a> </b>
-            <b id="google_translate_element"></b>
 	  	  </div>
       </div>
     </div>
@@ -101,8 +106,14 @@
             <li><a href="analysis.html"><i class="fas fa-chart-bar"></i> Analysis</a></li>
           </ul>
         </div>
-        
-        
+
+        <div class="footer-section">
+          <h4>Language</h4>
+          <div class="translation-container">
+            <i class="fas fa-language"></i>
+            <div id="google_translate_element"></div>
+          </div>
+        </div>
       </div>
       
       <div class="footer-bottom">
