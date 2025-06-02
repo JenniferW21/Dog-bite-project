@@ -64,15 +64,25 @@ function updateLoadMoreButton() {
 }
 
 async function getDogImage(breed) {
-  if (!breed) return null;
+  if (!breed || breed.toLowerCase() === 'unknown') {
+    // For unknown breeds, fetch a random dog image
+    try {
+      const response = await fetch('https://dog.ceo/api/breeds/image/random');
+      const data = await response.json();
+      return data.status === 'success' ? data.message : getDefaultImage();
+    } catch (error) {
+      console.error('Error fetching random dog image:', error);
+      return getDefaultImage();
+    }
+  }
   
-  // Clean up breed name for API - handle common breed name variations
+  // Clean up breed name for API
   const breedName = breed.toLowerCase()
     .replace(/\s+/g, '')  // Remove all spaces
     .replace(/[^a-z]/g, '') // Remove any non-alphabetic characters
     .split(' ')[0]; // Take first word of breed name
     
-  // Common breed name mappings
+  // Expanded breed name mappings
   const breedMappings = {
     'pitbull': 'pit',
     'pit bull': 'pit',
@@ -94,7 +104,50 @@ async function getDogImage(breed) {
     'siberian husky': 'husky',
     'boxer': 'boxer',
     'dachshund': 'dachshund',
-    'doxie': 'dachshund'
+    'doxie': 'dachshund',
+    'mix': 'mix',
+    'mixed': 'mix',
+    'mutt': 'mix',
+    'terrier': 'terrier',
+    'yorkie': 'terrier',
+    'yorkshire': 'terrier',
+    'shih tzu': 'shihtzu',
+    'shihtzu': 'shihtzu',
+    'corgi': 'corgi',
+    'pembroke': 'corgi',
+    'cardigan': 'corgi',
+    'collie': 'collie',
+    'border collie': 'collie',
+    'shepherd': 'germanshepherd',
+    'great dane': 'greatdane',
+    'greatdane': 'greatdane',
+    'doberman': 'doberman',
+    'doberman pinscher': 'doberman',
+    'schnauzer': 'schnauzer',
+    'miniature schnauzer': 'schnauzer',
+    'bernese': 'bernese',
+    'bernese mountain': 'bernese',
+    'bernese mountain dog': 'bernese',
+    'maltese': 'maltese',
+    'bichon': 'bichon',
+    'bichon frise': 'bichon',
+    'shiba': 'shiba',
+    'shiba inu': 'shiba',
+    'akita': 'akita',
+    'akita inu': 'akita',
+    'samoyed': 'samoyed',
+    'chow': 'chow',
+    'chow chow': 'chow',
+    'dalmatian': 'dalmatian',
+    'saint bernard': 'stbernard',
+    'st bernard': 'stbernard',
+    'stbernard': 'stbernard',
+    'newfoundland': 'newfoundland',
+    'newfie': 'newfoundland',
+    'mastiff': 'mastiff',
+    'english mastiff': 'mastiff',
+    'bullmastiff': 'mastiff',
+    'bull mastiff': 'mastiff'
   };
 
   // Use mapped breed name if available, otherwise use cleaned breed name
@@ -118,14 +171,20 @@ async function getDogImage(breed) {
       }
     }
     
-    // If both attempts fail, return a default image
-    return 'https://images.dog.ceo/breeds/mix/n02111889_1030.jpg';
+    // If both attempts fail, try to get a random dog image
+    const randomResponse = await fetch('https://dog.ceo/api/breeds/image/random');
+    const randomData = await randomResponse.json();
+    return randomData.status === 'success' ? randomData.message : getDefaultImage();
     
   } catch (error) {
     console.error('Error fetching dog image for breed:', breed, error);
-    // Return a default image on error
-    return 'https://images.dog.ceo/breeds/mix/n02111889_1030.jpg';
+    return getDefaultImage();
   }
+}
+
+function getDefaultImage() {
+  // Return a default image URL for when all attempts fail
+  return 'https://images.dog.ceo/breeds/mix/n02111889_1030.jpg';
 }
 
 function createCard(incident) {
