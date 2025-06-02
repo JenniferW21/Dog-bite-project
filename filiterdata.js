@@ -66,15 +66,65 @@ function updateLoadMoreButton() {
 async function getDogImage(breed) {
   if (!breed) return null;
   
-  // Clean up breed name for API
-  const breedName = breed.toLowerCase().split(' ')[0]; // Take first word of breed name
+  // Clean up breed name for API - handle common breed name variations
+  const breedName = breed.toLowerCase()
+    .replace(/\s+/g, '')  // Remove all spaces
+    .replace(/[^a-z]/g, '') // Remove any non-alphabetic characters
+    .split(' ')[0]; // Take first word of breed name
+    
+  // Common breed name mappings
+  const breedMappings = {
+    'pitbull': 'pit',
+    'pit bull': 'pit',
+    'german shepherd': 'germanshepherd',
+    'german shepard': 'germanshepherd',
+    'labrador': 'labrador',
+    'lab': 'labrador',
+    'retriever': 'retriever',
+    'golden': 'retriever',
+    'golden retriever': 'retriever',
+    'bulldog': 'bulldog',
+    'french bulldog': 'bulldog',
+    'chihuahua': 'chihuahua',
+    'beagle': 'beagle',
+    'poodle': 'poodle',
+    'rottweiler': 'rottweiler',
+    'rott': 'rottweiler',
+    'husky': 'husky',
+    'siberian husky': 'husky',
+    'boxer': 'boxer',
+    'dachshund': 'dachshund',
+    'doxie': 'dachshund'
+  };
+
+  // Use mapped breed name if available, otherwise use cleaned breed name
+  const apiBreedName = breedMappings[breedName] || breedName;
+  
   try {
-    const response = await fetch(`https://dog.ceo/api/breed/${breedName}/images/random`);
+    // First try with the mapped breed name
+    const response = await fetch(`https://dog.ceo/api/breed/${apiBreedName}/images/random`);
     const data = await response.json();
-    return data.message; // Returns the image URL
+    
+    if (data.status === 'success' && data.message) {
+      return data.message;
+    }
+    
+    // If first attempt fails, try with original breed name
+    if (apiBreedName !== breedName) {
+      const fallbackResponse = await fetch(`https://dog.ceo/api/breed/${breedName}/images/random`);
+      const fallbackData = await fallbackResponse.json();
+      if (fallbackData.status === 'success' && fallbackData.message) {
+        return fallbackData.message;
+      }
+    }
+    
+    // If both attempts fail, return a default image
+    return 'https://images.dog.ceo/breeds/mix/n02111889_1030.jpg';
+    
   } catch (error) {
-    console.error('Error fetching dog image:', error);
-    return null;
+    console.error('Error fetching dog image for breed:', breed, error);
+    // Return a default image on error
+    return 'https://images.dog.ceo/breeds/mix/n02111889_1030.jpg';
   }
 }
 

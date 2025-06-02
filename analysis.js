@@ -222,7 +222,7 @@ function displayChart(data, id, type, options = {}) {
         const value = d.value;
         const name = d.name;
         alert(`${name}: ${value} incidents`);
-      }
+}
     },
     transition: {
       duration: 500
