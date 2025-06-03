@@ -21,8 +21,6 @@ function updateAnalysis() {
   const analysisType = get('analysis-type').value;
   const chartType = get('chart-type').value;
   
-  // Apply filters
-  applyFilters();
   
   // Generate appropriate data and chart
   switch(analysisType) {
@@ -34,9 +32,6 @@ function updateAnalysis() {
       break;
     case 'gender':
       generateGenderAnalysis(chartType);
-      break;
-    case 'timeline':
-      generateTimelineAnalysis(chartType);
       break;
     case 'spayneuter':
       generateSpayNeuterAnalysis(chartType);
@@ -254,7 +249,7 @@ function updateAnalysisText(type, data) {
         <p>Key findings:</p>
         <ul>
           <li>Top 3 breeds account for ${((data.slice(0,3).reduce((sum, [,count]) => sum + count, 0)/totalIncidents)*100).toFixed(1)}% of incidents</li>
-          <li>${data.filter(([,count]) => count === 1).length} breeds had only one incident</li>
+         
           <li>Average incidents per breed: ${(totalIncidents/data.length).toFixed(1)}</li>
         </ul>
       `;
@@ -316,7 +311,6 @@ function updateAnalysisText(type, data) {
         <ul>
           <li>${((data.find(([s]) => s === 'Spayed/Neutered')[1]/totalStatus)*100).toFixed(1)}% of incidents involve spayed/neutered dogs</li>
           <li>${((data.find(([s]) => s === 'Not Spayed/Neutered')[1]/totalStatus)*100).toFixed(1)}% of incidents involve non-spayed/neutered dogs</li>
-          <li>Status is unknown for ${((data.find(([s]) => s === 'Unknown')[1]/totalStatus)*100).toFixed(1)}% of cases</li>
         </ul>
       `;
       break;

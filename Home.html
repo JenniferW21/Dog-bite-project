@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <style>
-    #banner::before {
+    .footer-content::before {
       content: '';
       position: absolute;
       top: 0;
@@ -35,19 +35,8 @@
       background-size: 200px;
       background-position: right 50px bottom 20px;
       opacity: 0.1;
-      pointer-events: none;}
-      .footer-content::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: url('img/doglogo.png') no-repeat;
-        background-size: 200px;
-        background-position: right 50px bottom 20px;
-        opacity: 0.1;
-        pointer-events: none;}
+      pointer-events: none;
+    }
       </style>
       
   </head>
@@ -94,10 +83,9 @@
         <div id="fitted-card">
           <h3>Data Sets ~ Charts</h3>
           <p>
-          -Pie Charts ("TBD")<br>
-          -Timeline Chart ("Accidents occured: 2015-present")<br>
-          -Area Chart ("TBD")<br>
-          -Donut Chart ("TBD")<br>
+          -Pie Charts <br>
+          -Bar Chart <br>
+          -Donut Chart <br>
           </p>
         </div>
       </div>
@@ -108,8 +96,8 @@
      <div class="flip-card">
         <div id="fitted-card">
           <h3>Importance & Relevance </h3>
-          <p>The importance of this dataset is to reveal when and where the dog bite occured <br>
-          This dataset will also show the type of dog breed that caused bites </p>
+          <p>The importance of this dataset is to show the data on dog bites.<br>
+          This dataset will also show the dog breed, gender, age, and date that the incident has occureed</p>
         </div>
       </div>
     </div>

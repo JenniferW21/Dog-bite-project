@@ -13,24 +13,8 @@
     <script src="c3.min-d2a1f852.js"></script>
     <script src="analysis.js"></script>
     <style>
-    #banner {
-      background: linear-gradient(135deg, #727D73 0%, #AAB99A 100%);
-      padding: 2.5rem 0 1.5rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      position: relative;
-      overflow: hidden;}
-    #banner::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('img/doglogo.png') no-repeat;
-      background-size: 200px;
-      background-position: right 50px bottom 20px;
-      opacity: 0.1;
-      pointer-events: none;}
+    /
+    
       </style>
   </head>
   <body onload="init()">
@@ -70,7 +54,6 @@
             <option value="breed">Dog Breeds</option>
             <option value="borough">Borough Distribution</option>
             <option value="gender">Gender Distribution</option>
-            <option value="timeline">Incidents Over Time</option>
             <option value="spayneuter">Spay/Neuter Status</option>
           </select>
         </div>
@@ -81,49 +64,10 @@
             <option value="pie">Pie Chart</option>
             <option value="bar">Bar Chart</option>
             <option value="donut">Donut Chart</option>
-            <option value="line">Line Chart</option>
-            <option value="area">Area Chart</option>
           </select>
         </div>
       </div>
 
-      <!-- Advanced Filters -->
-      <div class="advanced-filters">
-        <h4>Filter Data</h4>
-        <div class="filter-grid">
-          <div>
-            <label>Borough:</label>
-            <select id="filter-borough" onchange="applyFilters()">
-              <option value="">All Boroughs</option>
-              <option value="Brooklyn">Brooklyn</option>
-              <option value="Manhattan">Manhattan</option>
-              <option value="Queens">Queens</option>
-              <option value="Bronx">Bronx</option>
-              <option value="Staten Island">Staten Island</option>
-            </select>
-          </div>
-          
-          <div>
-            <label>Gender:</label>
-            <select id="filter-gender" onchange="applyFilters()">
-              <option value="">All Genders</option>
-              <option value="M">Male</option>
-              <option value="F">Female</option>
-              <option value="U">Unknown</option>
-            </select>
-          </div>
-          
-          <div>
-            <label">Spay/Neuter Status:</label>
-            <select id="filter-spayneuter" onchange="applyFilters()">
-              <option value="">All</option>
-              <option value="true">Spayed/Neutered</option>
-              <option value="false">Not Spayed/Neutered</option>
-            </select>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- Analysis Content -->
     <div class="container">
@@ -135,7 +79,7 @@
 
     <!-- Footer -->
     <div id="footer" class="container center">
-      <h3>NYC Open Data Project</h3>
+
     </div>
     <footer>
       <div class="footer-content">
