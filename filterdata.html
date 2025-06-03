@@ -6,6 +6,7 @@
 		<title>DOG BITES</title>
 		<link rel="icon" type="image/x-icon" href="img/doglogo.png">
 		<link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="home.css" rel="stylesheet" type="text/css" />
     <!-- Add Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
@@ -242,6 +243,46 @@
       <!-- output -->
       <div id="search" class="card-container"></div>
     
+      <footer>
+        <div class="footer-content">
+          <div class="footer-section">
+            <h4>About US</h4>
+            <p>This is a website that display dog bite data from the Department of Health and Mental Hygiene, 
+            <a style="text-decoration: none; color: var(--background-color);" href="https://data.cityofnewyork.us/Health/DOHMH-Dog-Bite-Data/rsgh-akpg/about_data">NYC OpenData.</a></p>
+          </div>
+          
+          <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="Home.html"><i class="fas fa-home"></i> Home</a></li>
+              <li><a href="filterdata.html"><i class="fas fa-filter"></i> Filter Data</a></li>
+              <li><a href="analysis.html"><i class="fas fa-chart-bar"></i> Analysis</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-section">
+            <h4>Language</h4>
+            <div class="translation-container">
+              <i class="fas fa-language"></i>
+              <div id="google_translate_element"></div>
+            </div>
+          </div>
+  
+          <div class="footer-section">
+            <h4>Theme</h4>
+            <div class="theme-container">
+              <i class="fas fa-moon"></i>
+              <button id="theme-toggle" class="theme-toggle-btn" onclick="toggleTheme()">
+                <i class="fas fa-sun"></i> Light
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="footer-bottom">
+          <p>Haoxuan Zheng & Jennifer Wang &copy; 2025 NYC Open Data Project - Dog Bites.</p>
+        </div>
+      </footer>
     
   </body>
 </html>

@@ -6,12 +6,32 @@
 		<title>DOG BITES</title>
 		<link rel="icon" type="image/x-icon" href="img/doglogo.png">
 		<link href="style.css" rel="stylesheet" type="text/css" />
-
+    <link href="home.css" rel="stylesheet" type="text/css" />
     <!-- Import the files -->
     <link href="c3-eb4b9be8.css" rel="stylesheet" type="text/css" />
     <script src="d3-5.8.2.min-c5268e33.js"></script>
     <script src="c3.min-d2a1f852.js"></script>
     <script src="analysis.js"></script>
+    <style>
+    #banner {
+      background: linear-gradient(135deg, #727D73 0%, #AAB99A 100%);
+      padding: 2.5rem 0 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      position: relative;
+      overflow: hidden;}
+    #banner::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('img/doglogo.png') no-repeat;
+      background-size: 200px;
+      background-position: right 50px bottom 20px;
+      opacity: 0.1;
+      pointer-events: none;}
+      </style>
   </head>
   <body onload="init()">
    <!-- layout:
@@ -36,7 +56,7 @@
 			    <b><a href="filterdata.html">FILTERDATA</a> </b>
 		      <b><a href="analysis.html">ANALYSIS</a> </b>
 	  </div>
-
+    </div>
     <!-- Analysis -->
      <!-- line 40 to 44  -->
     <div class="container subbanner">
@@ -117,5 +137,45 @@
     <div id="footer" class="container center">
       <h3>NYC Open Data Project</h3>
     </div>
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>About US</h4>
+          <p>This is a website that display dog bite data from the Department of Health and Mental Hygiene, 
+          <a style="text-decoration: none; color: var(--background-color);" href="https://data.cityofnewyork.us/Health/DOHMH-Dog-Bite-Data/rsgh-akpg/about_data">NYC OpenData.</a></p>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="Home.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="filterdata.html"><i class="fas fa-filter"></i> Filter Data</a></li>
+            <li><a href="analysis.html"><i class="fas fa-chart-bar"></i> Analysis</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Language</h4>
+          <div class="translation-container">
+            <i class="fas fa-language"></i>
+            <div id="google_translate_element"></div>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h4>Theme</h4>
+          <div class="theme-container">
+            <i class="fas fa-moon"></i>
+            <button id="theme-toggle" class="theme-toggle-btn" onclick="toggleTheme()">
+              <i class="fas fa-sun"></i> Light
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>Haoxuan Zheng & Jennifer Wang &copy; 2025 NYC Open Data Project - Dog Bites.</p>
+      </div>
+    </footer>
   </body>
 </html>
