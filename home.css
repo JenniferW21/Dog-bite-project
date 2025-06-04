@@ -631,8 +631,7 @@ footer {
   flex: 1;
   min-width: 300px;
   max-width: 800px;
-  position: sticky;
-  top: 20px;
+  top: 30px;
 }
 
 .carousel-container {
