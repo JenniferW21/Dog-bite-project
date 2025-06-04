@@ -23,6 +23,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <script src="carousel.js"></script>
     <style>
     .footer-content::before {
       content: '';
@@ -62,47 +63,97 @@
     </div>
 
     <div class="container">
-      <div class="flip-card">
-        <div id="fitted-card">
-          <h3>Agency Background</h3> 
-          <p> The Agency that proivided this data set is the Department of Health and Mental Hygiene(DOHMH). <br>
-              The DOHMH are one of the world's largest public health agencies.</p>
-          <P> DOHMH are respnsible for things such as: 
-              - Birth Certificates<br>
-              - Dog Licenses<br>
-              - Restaurant Inspection & Enforcement<br>
-              - Public Health Research<br>
-              - Disease Prevention<br>
-              - Health Education </p>
+      <div class="content-and-carousel">
+        <div class="content-section">
+          <div class="flip-card">
+            <div id="fitted-card">
+              <h3>Agency Background</h3> 
+              <p> The Agency that proivided this data set is the Department of Health and Mental Hygiene(DOHMH). <br>
+                  The DOHMH are one of the world's largest public health agencies.</p>
+              <P> DOHMH are respnsible for things such as: 
+                  - Birth Certificates<br>
+                  - Dog Licenses<br>
+                  - Restaurant Inspection & Enforcement<br>
+                  - Public Health Research<br>
+                  - Disease Prevention<br>
+                  - Health Education </p>
+            </div>
+          </div>
+
+          <div class="flip-card">
+            <div id="fitted-card">
+              <h3>Data Sets ~ Charts</h3>
+              <p>
+              -Pie Charts <br>
+              -Bar Chart <br>
+              -Donut Chart <br>
+              </p>
+            </div>
+          </div>
+
+          <div class="flip-card">
+            <div id="fitted-card">
+              <h3>Data Sets ~ Charts</h3>
+              <p>
+              -Pie Charts <br>
+              -Bar Chart <br>
+              -Donut Chart <br>
+              </p>
+            </div>
+          </div>
+
+          <div class="flip-card">
+            <div id="fitted-card">
+              <h3>Importance & Relevance </h3>
+              <p>The importance of this dataset is to show the data on dog bites.<br>
+              This dataset will also show the dog breed, gender, age, and date that the incident has occureed</p>
+            </div>
+          </div>
         </div>
-      </div>
-
-
-    <div>
-      <div class="flip-card">
-        <div id="fitted-card">
-          <h3>Data Sets ~ Charts</h3>
-          <p>
-          -Pie Charts <br>
-          -Bar Chart <br>
-          -Donut Chart <br>
-          </p>
+        
+        
+        <div class="carousel-section">
+          <div class="carousel-container">
+            <div class="carousel-wrapper">
+              <div class="carousel-slide">
+                <img src="" alt="Random dog" id="carousel-image">
+              </div>
+            </div>
+            <button class="carousel-button prev" onclick="prevImage()">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="carousel-button next" onclick="nextImage()">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+          <div class="dog-facts">
+            <h3><i class="fas fa-paw"></i> Did You Know?</h3>
+            <div class="facts-container">
+              <div class="fact-card">
+                <i class="fas fa-brain"></i>
+                <h4>Smart Pups</h4>
+                <p>Dogs can understand up to 250 words and gestures, making them as intelligent as a 2-year-old child.</p>
+              </div>
+              <div class="fact-card">
+                <i class="fas fa-heartbeat"></i>
+                <h4>Heart Health</h4>
+                <p>Petting a dog can lower your blood pressure and reduce stress levels.</p>
+              </div>
+              <div class="fact-card">
+                <i class="fas fa-dog"></i>
+                <h4>Unique Noses</h4>
+                <p>Each dog's nose print is unique, just like human fingerprints!</p>
+              </div>
+              <div class="fact-card">
+                <i class="fas fa-running"></i>
+                <h4>Speed Demons</h4>
+                <p>The fastest dog breed, the Greyhound, can run up to 45 miles per hour.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-
-
-    <div>
-     <div class="flip-card">
-        <div id="fitted-card">
-          <h3>Importance & Relevance </h3>
-          <p>The importance of this dataset is to show the data on dog bites.<br>
-          This dataset will also show the dog breed, gender, age, and date that the incident has occureed</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
 
     <footer>
       <div class="footer-content">
@@ -122,19 +173,19 @@
         </div>
         
         <div class="footer-section">
-          <h4>Language</h4>
+          <h4>Model</h4>
           <div class="translation-container">
-            <i class="fas fa-language"></i>
             <div id="google_translate_element"></div>
+            <button style="margin-top: 20px;" id="theme-toggle" class="theme-toggle-btn" onclick="toggleTheme()">
+              <i class="fas fa-sun"></i> Light
+            </button>
           </div>
         </div>
 
         <div class="footer-section">
-          <h4>Theme</h4>
+          <h4>Links</h4>
           <div class="theme-container">
-            <i class="fas fa-moon"></i>
-            <button id="theme-toggle" class="theme-toggle-btn" onclick="toggleTheme()">
-              <i class="fas fa-sun"></i> Light
+            <a href="https://github.com/HaoxuanZheng/Dog-Bites-Project" target="_blank"><i class="fab fa-github"></i> GitHub</a>
             </button>
           </div>
         </div>

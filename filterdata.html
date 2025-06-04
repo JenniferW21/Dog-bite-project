@@ -21,6 +21,18 @@
     <link href="card-styles.css" rel="stylesheet" type="text/css" />
     <!-- Import the files -->
     <script src="filiterdata.js"></script>
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+          pageLanguage: 'en',
+          includedLanguages: 'es,zh-CN,fr,de,it,ja,ko,pt,ru,ar', // Add languages you want to support
+          layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+          autoDisplay: false
+        }, 'google_translate_element');
+      }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+   
     <style>
       .card-container {
         display: grid;
@@ -100,6 +112,7 @@
         padding: 5px;
         text-align: center;
         font-size: 0.9em;
+        border-radius: 25px;
       }
 
       .no-image, .error-message {
@@ -220,25 +233,29 @@
       <div class="centered">
           <h3>Dog Bite Incidents: Detailed Information</h3>
           <p>This page allows you to view individual dog bite incidents reported in New York City. You can use the filters below to narrow down the results based on various criteria such as the dog's breed, age, gender, and the borough where the incident occurred.</p>
-          <input type="text" id="breed" placeholder="e.g., PIT BULL">
-          <input type="text" id="age" placeholder="e.g., 5">
-          <label>Borough:</label>
-            <select id="borough-filter">
-              <option value="">All Boroughs</option>
-              <option value="BROOKLYN">Brooklyn</option>
-              <option value="BRONX">Bronx</option>
-              <option value="MANHATTAN">Manhattan</option>
-              <option value="QUEENS">Queens</option>
-              <option value="STATEN ISLAND">Staten Island</option>
-            </select>
-          <label for="gender-filter">Dog Gender:</label>
-            <select id="gender-filter">
-              <option value="">Any Gender</option>
-              <option value="M">Male</option>
-              <option value="F">Female</option>
-              <option value="U">Unknown</option>
-            </select>
-          <button class="button" onclick="search()">Search</button>        
+          <div class="search-container">
+            <p>Breed:</p>
+            <input type="text" id="breed" placeholder="e.g., PIT BULL">
+            <p>Age:</p>
+            <input type="text" id="age" placeholder="e.g., 5">
+            <label>Borough:</label>
+              <select id="borough-filter">
+                <option value="">All Boroughs</option>
+                <option value="BROOKLYN">Brooklyn</option>
+                <option value="BRONX">Bronx</option>
+                <option value="MANHATTAN">Manhattan</option>
+                <option value="QUEENS">Queens</option>
+                <option value="STATEN ISLAND">Staten Island</option>
+              </select>
+            <label for="gender-filter">Dog Gender:</label>
+              <select id="gender-filter">
+                <option value="">Any Gender</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+                <option value="U">Unknown</option>
+              </select>
+            <button class="button" onclick="search()">Search</button>    
+          </div>   
       </div>
       <!-- output -->
       <div id="search" class="card-container"></div>

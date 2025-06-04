@@ -1,1 +1,71 @@
 #添加一个深色模式
+
+/* Analysis Page Styles */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.subbanner {
+  background: var(--card-background);
+  border-radius: 10px;
+  padding: 25px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 15px var(--shadow-color);
+}
+
+.subbanner h3 {
+  color: var(--primary-color);
+  font-size: 1.8em;
+  margin: 0 0 15px 0;
+}
+
+.subbanner p {
+  color: var(--text-color);
+  font-size: 1.1em;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Filter Controls */
+.filter-controls {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.filter-controls > div {
+  flex: 1;
+  min-width: 200px;
+}
+
+.filter-controls label {
+  display: block;
+  color: var(--primary-color);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.filter-controls select {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid var(--border-color);
+  border-radius: 5px;
+  background: var(--background-color);
+  color: var(--text-color);
+  font-size: 1em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-controls select:hover {
+  border-color: var(--primary-color);
+}
+
+.filter-controls select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px var(--shadow-color);
+}
