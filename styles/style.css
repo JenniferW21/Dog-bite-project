@@ -5,7 +5,7 @@
 }
 
 .flex-container{
-	background-color: #c0d1ae;
+	background-color:  #AAB99A;
 	display:flex;
 }
 
@@ -23,20 +23,20 @@
   text-align:center;
 }
 .centered{
-	background-color: #AAB99A;
+	
 	text-align: center;
 	font-weight:bold;
   padding: 20px;
 }
-.centered h1{
-  color:#1A3636;
+/* .centered h1{
+  color:#AAB99A;
   font-size: 50px;
 }
 
 .centered h2{
   color:#1A3636;
   font-size: 25px;
-}
+} */
 .centered label{
   color:#1A3636;
   font-size: 20px;
