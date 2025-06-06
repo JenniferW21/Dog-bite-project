@@ -39,6 +39,9 @@
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
    
     <style>
+      #centered{
+        background-color: #AAB99A;
+      }
       .card-container {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -208,6 +211,7 @@
 
       #load-more {
         margin: 20px 0;
+      
       }
     </style>
   </head>
@@ -220,11 +224,11 @@
       picture//information:chart -->
     <!-- Banner -->
      
-    <div id="banner">
+    <!-- <div id="banner">
       <div class="navcontainer">
 			  <div class="centered">
               <h1>DOG BITES</h1>
-			    <h2> FilterData </h2> </div>
+			        <h2> FilterData </h2> </div>
 	  	  </div>
         <div class="flex-container" id="navbar" >
             <b><a href="index.html" class="active"><i class="fas fa-home"></i> HOME</a></b>
@@ -232,16 +236,39 @@
 		       	<b><a href="analysis.html"><i class="fas fa-chart-bar"></i> ANALYSIS</a> </b>
 	  	  </div>
       </div>
-    </div>
+    </div> -->
+<div id="banner">
+      <div class="navcontainer">
+        <div class="centered">
+          <h1>DOG BITES</h1>
+          <h2>Home</h2>
+        </div>
 
+        <div class="modelContainer">
+          <div class="translation-container">
+            <div id="google_translate_element"></div>
+          </div>
+
+          <button id="theme-toggle" class="theme-toggle-btn" onclick="toggleTheme()">
+            <i class="fas fa-sun"></i> Light
+          </button>
+        </div>
+      </div>
+      <div class="flex-container" id="navbar">
+        <b><a href="index.html" class="active"><i class="fas fa-home"></i> HOME</a></b>
+        <b><a href="filterdata.html"><i class="fas fa-filter"></i> FILTERDATA</a></b>
+        <b><a href="analysis.html"><i class="fas fa-chart-bar"></i> ANALYSIS</a></b>
+      </div>
+    </div>
+    
     <!-- Search -->
-      <div class="centered" >
+      <div id="centered" class="centered" >
           <h3>Dog Bite Incidents: Detailed Information</h3>
           <p>This page allows you to view individual dog bite incidents reported in New York City. You can use the filters below to narrow down the results based on various criteria such as the dog's breed, age, gender, and the borough where the incident occurred.</p>
           <div class="search-container">
-            <p>Breed:</p>
+            <label>Breed:</label>
             <input type="text" id="breed" placeholder="e.g., PIT BULL">
-            <p>Age:</p>
+            <label>Age:</label>
             <input type="text" id="age" placeholder="e.g., 5">
             <label>Borough:</label>
               <select id="borough-filter">
@@ -279,7 +306,7 @@
         <div class="footer-section">
           <h4>Quick Links</h4>
           <ul>
-            <li><a href="Home.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
             <li><a href="filterdata.html"><i class="fas fa-filter"></i> Filter Data</a></li>
             <li><a href="analysis.html"><i class="fas fa-chart-bar"></i> Analysis</a></li>
           </ul>
