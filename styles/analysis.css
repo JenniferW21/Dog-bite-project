@@ -69,3 +69,51 @@
   border-color: var(--primary-color);
   box-shadow: 0 0 0 3px var(--shadow-color);
 }
+
+.analysis-text {
+  background: var(--card-background);
+  border-radius: 10px;
+  padding: 25px;
+  margin: 20px 0;
+  box-shadow: 0 4px 15px var(--shadow-color);
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+.analysis-text h3 {
+  color: var(--primary-color);
+  font-size: 1.8em;
+  margin: 0 0 15px 0;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 10px;
+}
+
+.analysis-text p {
+  margin: 0 0 15px 0;
+  font-size: 1.1em;
+}
+
+.analysis-text ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 15px 0;
+}
+
+.analysis-text li {
+  margin: 10px 0;
+  padding-left: 25px;
+  position: relative;
+}
+
+.analysis-text li:before {
+  content: "•";
+  color: var(--primary-color);
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+.analysis-text strong {
+  color: var(--primary-color);
+  font-weight: 600;
+}
