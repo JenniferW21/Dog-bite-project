@@ -12,8 +12,11 @@
     <link href="styles/c3 eb4b9be8.css" rel="stylesheet" type="text/css" />
     <script src="js/c3.min-d2a1f852.js"></script>
     <script src="js/d3-5.8.2.min-c5268e33.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <script src="js/analysis.js"></script>
     <script src="js/home.js"></script>
+    <script src="js/carousel.js"></script>
     <style>
     
     
@@ -48,16 +51,16 @@
       <div class="navcontainer">
         <div class="centered">
           <h1>DOG BITES</h1>
-          <h2>Home</h2>
+          <h2>Analysis</h2>
         </div>
 
         <div class="modelContainer">
           <div class="translation-container">
-            <!-- <div id="google_translate_element"></div> -->
+            <div id="google_translate_element"></div>
           </div>
 
-          <!-- <button id="theme-toggle" class="theme-toggle-btn" onclick="toggleTheme()">
-            <i class="fas fa-sun"></i> Light -->
+          <button id="theme-toggle" class="theme-toggle-btn" onclick="toggleTheme()">
+            <i class="fas fa-sun"></i> Light
           </button>
         </div>
       </div>
@@ -124,7 +127,7 @@
           </ul>
         </div>
         
-        <div class="footer-section">
+        <!-- <div class="footer-section">
           <h4>Model</h4>
           <div class="translation-container">
             <div id="google_translate_element"></div>
@@ -132,7 +135,7 @@
               <i class="fas fa-sun"></i> Light
             </button>
           </div>
-        </div>
+        </div> -->
 
         <div class="footer-section">
           <h4>Links</h4>

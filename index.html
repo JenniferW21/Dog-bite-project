@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <script src="js/home.js"></script>
     <script src="js/carousel.js"></script>
+
   </head>
   <body>
     <div id="banner">
@@ -29,7 +30,7 @@
           </button>
         </div>
       </div>
-      <div class="flex-container" id="navbar">
+      <div class="flex-container" id="navbar" style="padding:25px; gap:310px;">
         <b><a href="index.html" class="active"><i class="fas fa-home"></i> HOME</a></b>
         <b><a href="filterdata.html"><i class="fas fa-filter"></i> FILTERDATA</a></b>
         <b><a href="analysis.html"><i class="fas fa-chart-bar"></i> ANALYSIS</a></b>
@@ -141,6 +142,12 @@
     <footer>
       <div class="footer-content">
         <div class="footer-section">
+          <h4>About US</h4>
+          <p>This is a website that display dog bite data from the Department of Health and Mental Hygiene, 
+          <a style="text-decoration: none; color: var(--background-color);" href="https://data.cityofnewyork.us/Health/DOHMH-Dog-Bite-Data/rsgh-akpg/about_data">NYC OpenData.</a></p>
+        </div>
+        
+        <div class="footer-section">
           <h4>Quick Links</h4>
           <ul>
             <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
@@ -148,16 +155,28 @@
             <li><a href="analysis.html"><i class="fas fa-chart-bar"></i> Analysis</a></li>
           </ul>
         </div>
+<!--         
+        <div class="footer-section">
+          <h4>Model</h4>
+          <div class="translation-container">
+            <div id="google_translate_element"></div>
+            <button style="margin-top: 20px;" id="theme-toggle" class="theme-toggle-btn" onclick="toggleTheme()">
+              <i class="fas fa-sun"></i> Light
+            </button>
+          </div>
+        </div> -->
+
         <div class="footer-section">
           <h4>Links</h4>
           <div class="theme-container">
             <ul>
-              <li><a href="https://data.cityofnewyork.us/Health/DOHMH-Dog-Bite-Data/rsgh-akpg/about_data">NYC OpenData</a></li>
-              <li><a href="https://dog.ceo/">Dog CEO</a></li>
+              <li><a style="text-decoration: none; color: var(--background-color);" href="https://data.cityofnewyork.us/Health/DOHMH-Dog-Bite-Data/rsgh-akpg/about_data">NYC OpenData</a></li>
+              <li><a style="text-decoration: none; color: var(--background-color);" href="https://dog.ceo/">Dog CEO</a></li>
             </ul>
           </div>
         </div>
       </div>
+      
       <div class="footer-bottom">
         <p>Haoxuan Zheng & Jennifer Wang &copy; 2025 NYC Open Data Project - Dog Bites.</p>
       </div>
