@@ -5,8 +5,8 @@ let currentChart = null;
 // Initialize the application
 async function init() {
   try {
-    const link = "https://data.cityofnewyork.us/resource/rsgh-akpg.json";
-    const response = await fetch(link);
+    let link = "https://data.cityofnewyork.us/resource/rsgh-akpg.json";
+    let response = await fetch(link);
     data = await response.json();
     filteredData = [...data];
     updateAnalysis();
@@ -18,8 +18,8 @@ async function init() {
 
 // Update analysis based on selected options
 function updateAnalysis() {
-  const analysisType = get('analysis-type').value;
-  const chartType = get('chart-type').value;
+  let analysisType = get('analysis-type').value;
+  let chartType = get('chart-type').value;
   
   
   // Generate appropriate data and chart
@@ -41,14 +41,14 @@ function updateAnalysis() {
 
 // Apply filters to the data
 function applyFilters() {
-  const boroughFilter = get('filter-borough').value;
-  const genderFilter = get('filter-gender').value;
-  const spayNeuterFilter = get('filter-spayneuter').value;
+  let boroughFilter = get('filter-borough').value;
+  let genderFilter = get('filter-gender').value;
+  let spayNeuterFilter = get('filter-spayneuter').value;
   
   filteredData = data.filter(incident => {
-    const boroughMatch = !boroughFilter || incident.borough === boroughFilter;
-    const genderMatch = !genderFilter || incident.gender === genderFilter;
-    const spayNeuterMatch = !spayNeuterFilter || 
+    let boroughMatch = !boroughFilter || incident.borough === boroughFilter;
+    let genderMatch = !genderFilter || incident.gender === genderFilter;
+    let spayNeuterMatch = !spayNeuterFilter || 
       (spayNeuterFilter === 'true' ? incident.spayneuter : !incident.spayneuter);
     
     return boroughMatch && genderMatch && spayNeuterMatch;
@@ -57,18 +57,18 @@ function applyFilters() {
 
 // Generate breed analysis
 function generateBreedAnalysis(chartType) {
-  const breedCounts = {};
+  let breedCounts = {};
   filteredData.forEach(incident => {
-    const breed = incident.breed || 'Unknown';
+    let breed = incident.breed || 'Unknown';
     breedCounts[breed] = (breedCounts[breed] || 0) + 1;
   });
   
   // Sort breeds by count and take top 10
-  const sortedBreeds = Object.entries(breedCounts)
+  let sortedBreeds = Object.entries(breedCounts)
     .sort(([,a], [,b]) => b - a)
     .slice(0, 10);
   
-  const columns = sortedBreeds.map(([breed, count]) => [breed, count]);
+  let columns = sortedBreeds.map(([breed, count]) => [breed, count]);
   
   displayChart(columns, 'chart', chartType, {
     title: 'Top 10 Dog Breeds Involved in Bites',
@@ -93,13 +93,13 @@ function generateBreedAnalysis(chartType) {
 
 // Generate borough analysis
 function generateBoroughAnalysis(chartType) {
-  const boroughCounts = {};
+  let boroughCounts = {};
   filteredData.forEach(incident => {
-    const borough = incident.borough || 'Unknown';
+    let borough = incident.borough || 'Unknown';
     boroughCounts[borough] = (boroughCounts[borough] || 0) + 1;
   });
   
-  const columns = Object.entries(boroughCounts)
+  let columns = Object.entries(boroughCounts)
     .map(([borough, count]) => [borough, count]);
   
   displayChart(columns, 'chart', chartType, {
@@ -114,7 +114,7 @@ function generateBoroughAnalysis(chartType) {
 
 // Generate gender analysis
 function generateGenderAnalysis(chartType) {
-  const genderCounts = {
+  let genderCounts = {
     'Male': 0,
     'Female': 0,
     'Unknown': 0
@@ -128,7 +128,7 @@ function generateGenderAnalysis(chartType) {
     }
   });
   
-  const columns = Object.entries(genderCounts)
+  let columns = Object.entries(genderCounts)
     .map(([gender, count]) => [gender, count]);
   
   displayChart(columns, 'chart', chartType, {
@@ -143,14 +143,14 @@ function generateGenderAnalysis(chartType) {
 
 // Generate timeline analysis
 function generateTimelineAnalysis(chartType) {
-  const yearCounts = {};
+  let yearCounts = {};
   filteredData.forEach(incident => {
-    const date = new Date(incident.dateofbite);
-    const year = date.getFullYear();
+    let date = new Date(incident.dateofbite);
+    let year = date.getFullYear();
     yearCounts[year] = (yearCounts[year] || 0) + 1;
   });
   
-  const columns = Object.entries(yearCounts)
+  let columns = Object.entries(yearCounts)
     .sort(([a], [b]) => a - b)
     .map(([year, count]) => [year, count]);
   
@@ -172,7 +172,7 @@ function generateTimelineAnalysis(chartType) {
 
 // Generate spay/neuter analysis
 function generateSpayNeuterAnalysis(chartType) {
-  const statusCounts = {
+  let statusCounts = {
     'Spayed/Neutered': 0,
     'Not Spayed/Neutered': 0,
     'Unknown': 0
@@ -188,7 +188,7 @@ function generateSpayNeuterAnalysis(chartType) {
     }
   });
   
-  const columns = Object.entries(statusCounts)
+  let columns = Object.entries(statusCounts)
     .map(([status, count]) => [status, count]);
   
   displayChart(columns, 'chart', chartType, {
@@ -207,15 +207,15 @@ function displayChart(data, id, type, options = {}) {
     currentChart.destroy();
   }
   
-  const defaultOptions = {
+  let defaultOptions = {
     bindto: '#' + id,
     data: {
       columns: data,
       type: type,
       onclick: function(d) {
         // Interactive feature: Show detailed info on click
-        const value = d.value;
-        const name = d.name;
+        let value = d.value;
+        let name = d.name;
         alert(`${name}: ${value} incidents`);
 }
     },
@@ -235,13 +235,13 @@ function displayChart(data, id, type, options = {}) {
 
 // Update analysis text
 function updateAnalysisText(type, data) {
-  const textContainer = get('analysis-text');
+  let textContainer = get('analysis-text');
   let analysis = '';
   
   switch(type) {
     case 'breed':
-      const totalIncidents = data.reduce((sum, [,count]) => sum + count, 0);
-      const topBreed = data[0];
+      let totalIncidents = data.reduce((sum, [,count]) => sum + count, 0);
+      let topBreed = data[0];
       analysis = `
         <h3>Breed Analysis</h3>
         <p>This analysis shows the distribution of dog breeds involved in bite incidents. 
@@ -256,8 +256,8 @@ function updateAnalysisText(type, data) {
       break;
       
     case 'borough':
-      const totalBoroughs = data.reduce((sum, [,count]) => sum + count, 0);
-      const highestBorough = data.reduce((a, b) => a[1] > b[1] ? a : b);
+      let totalBoroughs = data.reduce((sum, [,count]) => sum + count, 0);
+      let highestBorough = data.reduce((a, b) => a[1] > b[1] ? a : b);
       analysis = `
         <h3>Borough Analysis</h3>
         <p>This analysis shows the distribution of dog bite incidents across NYC boroughs. 
@@ -272,7 +272,7 @@ function updateAnalysisText(type, data) {
       break;
       
     case 'gender':
-      const totalGender = data.reduce((sum, [,count]) => sum + count, 0);
+      let totalGender = data.reduce((sum, [,count]) => sum + count, 0);
       analysis = `
         <h3>Gender Analysis</h3>
         <p>This analysis shows the distribution of dog bite incidents by dog gender.</p>
@@ -286,9 +286,9 @@ function updateAnalysisText(type, data) {
       break;
       
     case 'timeline':
-      const years = data.map(([year]) => year);
-      const counts = data.map(([,count]) => count);
-      const avgIncidents = counts.reduce((a, b) => a + b, 0) / counts.length;
+      let years = data.map(([year]) => year);
+      let counts = data.map(([,count]) => count);
+      let avgIncidents = counts.reduce((a, b) => a + b, 0) / counts.length;
       analysis = `
         <h3>Timeline Analysis</h3>
         <p>This analysis shows the trend of dog bite incidents over time from ${years[0]} to ${years[years.length-1]}.</p>
@@ -303,7 +303,7 @@ function updateAnalysisText(type, data) {
       break;
       
     case 'spayneuter':
-      const totalStatus = data.reduce((sum, [,count]) => sum + count, 0);
+      let totalStatus = data.reduce((sum, [,count]) => sum + count, 0);
       analysis = `
         <h3>Spay/Neuter Analysis</h3>
         <p>This analysis shows the distribution of dog bite incidents by spay/neuter status.</p>

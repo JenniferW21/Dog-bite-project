@@ -7,24 +7,15 @@
 		<link rel="icon" type="image/x-icon" href="img/doglogo.png">
 		<link href="styles/style.css" rel="stylesheet" type="text/css" />
     <link href="styles/home.css" rel="stylesheet" type="text/css" />
-
-    <!-- Add Leaflet CSS -->
+    <link href="styles/fliterdate.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
      crossorigin=""/>
-
-    <!-- Add Leaflet JavaScript -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
      crossorigin=""></script>
-
-    <!-- Add Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-    <!-- Add card styles -->
     <link href="styles/card-styles.css" rel="stylesheet" type="text/css" />
-
-    <!-- Import the files -->
     <script src="js/filiterdata.js"></script>
     <script type="text/javascript">
       function googleTranslateElementInit() {
@@ -33,184 +24,6 @@
     </script>
     <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
    
-    <style>
-      #centered{
-        background-color: #AAB99A;
-        padding:10px;
-        text-align:center;
-      }
-      .card-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 20px;
-        padding: 20px;
-      }
-      
-      .flip-card {
-        background-color: transparent;
-        width: 100%;
-        height: 300px;
-        perspective: 1000px;
-      }
-      
-      .flip-card-inner {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        text-align: left;
-        transition: transform 0.6s;
-        transform-style: preserve-3d;
-      }
-      
-      .flip-card:hover .flip-card-inner {
-        transform: rotateY(180deg);
-      }
-      
-      .flip-card-front, .flip-card-back {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      }
-      
-      .flip-card-front {
-        background-color: white;
-        padding: 15px;
-      }
-      
-      .flip-card-back {
-        background-color: white;
-        transform: rotateY(180deg);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 10px;
-      }
-
-      .dog-image-container {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-      }
-
-      .dog-image-container img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        border-radius: 8px;
-        max-height: 250px;
-      }
-
-      .breed-info {
-        position: absolute;
-        bottom: 10px;
-        left: 0;
-        right: 0;
-        background: rgba(0, 0, 0, 0.7);
-        color: white;
-        padding: 5px;
-        text-align: center;
-        font-size: 0.9em;
-        border-radius: 25px;
-      }
-
-      .no-image, .error-message {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100%;
-        color: #666;
-        text-align: center;
-        padding: 20px;
-      }
-
-      .no-image i, .error-message i {
-        font-size: 2em;
-        margin-bottom: 10px;
-        color: #727D73;
-      }
-
-      .loading {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100%;
-        color: #666;
-      }
-      
-      .map-container {
-        width: 100%;
-        height: 100%;
-        border-radius: 10px;
-      }
-      
-      .card-content {
-        height: 100%;
-        overflow-y: auto;
-      }
-      
-      .card-content h3 {
-        margin-top: 0;
-        color: #333;
-        border-bottom: 2px solid #eee;
-        padding-bottom: 10px;
-      }
-      
-      .card-content p {
-        margin: 8px 0;
-        color: #666;
-      }
-      
-      .card-content strong {
-        color: #333;
-      }
-
-      .load-more-button {
-        background-color: #727D73;
-        color: #F0F0D7;
-        padding: 12px 24px;
-        border: none;
-        border-radius: 8px;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        margin: 20px auto;
-        display: block;
-      }
-
-      .load-more-button:hover {
-        background-color: #AAB99A;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(114, 125, 115, 0.2);
-      }
-
-      .load-more-button:active {
-        transform: translateY(0);
-      }
-
-      .end-message {
-        color: #727D73;
-        font-size: 1rem;
-        text-align: center;
-        margin: 20px 0;
-        padding: 12px;
-        background-color: #F0F0D7;
-        border-radius: 8px;
-        border: 1px solid #AAB99A;
-      }
-
-      #load-more {
-        margin: 20px 0;
-      
-      }
-    </style>
   </head>
   <body onload="init()">
    <!-- layout:
@@ -252,8 +65,8 @@
         </div>
       </div>
       <div class="flex-container" id="navbar">
-        <b><a href="index.html" class="active"><i class="fas fa-home"></i> HOME</a></b>
-        <b><a href="filterdata.html"><i class="fas fa-filter"></i> FILTERDATA</a></b>
+        <b><a href="index.html" ><i class="fas fa-home"></i> HOME</a></b>
+        <b><a href="filterdata.html" class="active"><i class="fas fa-filter"></i> FILTERDATA</a></b>
         <b><a href="analysis.html"><i class="fas fa-chart-bar"></i> ANALYSIS</a></b>
       </div>
     </div>

@@ -1,12 +1,12 @@
 // Carousel functionality
 let currentImageIndex = 0;
 let imageCache = [];
-const CACHE_SIZE = 5;
+let CACHE_SIZE = 5;
 
 async function fetchRandomDogImage() {
   try {
-    const response = await fetch('https://dog.ceo/api/breeds/image/random');
-    const data = await response.json();
+    let response = await fetch('https://dog.ceo/api/breeds/image/random');
+    let data = await response.json();
     if (data.status === 'success') {
       return data.message;
     }
@@ -19,7 +19,7 @@ async function fetchRandomDogImage() {
 
 async function preloadImages() {
   while (imageCache.length < CACHE_SIZE) {
-    const imageUrl = await fetchRandomDogImage();
+    let imageUrl = await fetchRandomDogImage();
     if (imageUrl) {
       imageCache.push(imageUrl);
     }
@@ -27,7 +27,7 @@ async function preloadImages() {
 }
 
 async function updateCarouselImage() {
-  const carouselImage = document.getElementById('carousel-image');
+  let carouselImage = document.getElementById('carousel-image');
   if (!carouselImage) return;
 
   if (imageCache.length === 0) {

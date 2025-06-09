@@ -1,6 +1,6 @@
 let data;
 let currentPage = 1;
-const itemsPerPage = 50;
+let itemsPerPage = 50;
 let filteredData = [];
 
 async function init() {
@@ -12,16 +12,16 @@ async function init() {
 }
 
 function toggleTheme() {
-  const body = document.body;
-  const themeToggle = document.getElementById('theme-toggle');
-  const currentTheme = body.getAttribute('data-theme') || 'light';
-  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+  let body = document.body;
+  let themeToggle = document.getElementById('theme-toggle');
+  let currentTheme = body.getAttribute('data-theme') || 'light';
+  let newTheme = currentTheme === 'light' ? 'dark' : 'light';
   
   // Update theme
   body.setAttribute('data-theme', newTheme);
   
   // Update button text and icon
-  const icon = themeToggle.querySelector('i');
+  let icon = themeToggle.querySelector('i');
   if (newTheme === 'dark') {
     icon.className = 'fas fa-moon';
     themeToggle.innerHTML = '<i class="fas fa-moon"></i> Dark';
@@ -42,9 +42,9 @@ function displayData() {
     searchDiv.innerHTML = '';
   }
   
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentItems = filteredData.slice(startIndex, endIndex);
+  let startIndex = (currentPage - 1) * itemsPerPage;
+  let endIndex = startIndex + itemsPerPage;
+  let currentItems = filteredData.slice(startIndex, endIndex);
   
   currentItems.forEach(incident => {
     let card = createCard(incident);
@@ -64,13 +64,13 @@ function updateLoadMoreButton() {
     document.body.appendChild(loadMoreDiv);
   }
   
-  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-  const hasMorePages = currentPage < totalPages;
+  let totalPages = Math.ceil(filteredData.length / itemsPerPage);
+  let hasMorePages = currentPage < totalPages;
   
   loadMoreDiv.innerHTML = '';
   
   if (hasMorePages) {
-    const loadMoreButton = document.createElement('button');
+    let loadMoreButton = document.createElement('button');
     loadMoreButton.className = 'load-more-button';
     loadMoreButton.textContent = `Load More (${currentPage * itemsPerPage} of ${filteredData.length} items)`;
     loadMoreButton.onclick = () => {
@@ -79,7 +79,7 @@ function updateLoadMoreButton() {
     };
     loadMoreDiv.appendChild(loadMoreButton);
   } else {
-    const endMessage = document.createElement('p');
+    let endMessage = document.createElement('p');
     endMessage.className = 'end-message';
     endMessage.textContent = `Showing all ${filteredData.length} items`;
     loadMoreDiv.appendChild(endMessage);
@@ -90,8 +90,8 @@ async function getDogImage(breed) {
   if (!breed || breed.toLowerCase() === 'unknown') {
     // For unknown breeds, fetch a random dog image
     try {
-      const response = await fetch('https://dog.ceo/api/breeds/image/random');
-      const data = await response.json();
+      let response = await fetch('https://dog.ceo/api/breeds/image/random');
+      let data = await response.json();
       return data.status === 'success' ? data.message : getDefaultImage();
     } catch (error) {
       console.error('Error fetching random dog image:', error);
@@ -100,13 +100,13 @@ async function getDogImage(breed) {
   }
   
   // Clean up breed name for API
-  const breedName = breed.toLowerCase()
+  let breedName = breed.toLowerCase()
     .replace(/\s+/g, '')  // Remove all spaces
     .replace(/[^a-z]/g, '') // Remove any non-alphabetic characters
     .split(' ')[0]; // Take first word of breed name
     
   // Expanded breed name mappings
-  const breedMappings = {
+  let breedMappings = {
     'pitbull': 'pit',
     'pit bull': 'pit',
     'german shepherd': 'germanshepherd',
@@ -174,12 +174,12 @@ async function getDogImage(breed) {
   };
 
   // Use mapped breed name if available, otherwise use cleaned breed name
-  const apiBreedName = breedMappings[breedName] || breedName;
+  let apiBreedName = breedMappings[breedName] || breedName;
   
   try {
     // First try with the mapped breed name
-    const response = await fetch(`https://dog.ceo/api/breed/${apiBreedName}/images/random`);
-    const data = await response.json();
+    let response = await fetch(`https://dog.ceo/api/breed/${apiBreedName}/images/random`);
+    let data = await response.json();
     
     if (data.status === 'success' && data.message) {
       return data.message;
@@ -187,16 +187,16 @@ async function getDogImage(breed) {
     
     // If first attempt fails, try with original breed name
     if (apiBreedName !== breedName) {
-      const fallbackResponse = await fetch(`https://dog.ceo/api/breed/${breedName}/images/random`);
-      const fallbackData = await fallbackResponse.json();
+      let fallbackResponse = await fetch(`https://dog.ceo/api/breed/${breedName}/images/random`);
+      let fallbackData = await fallbackResponse.json();
       if (fallbackData.status === 'success' && fallbackData.message) {
         return fallbackData.message;
       }
     }
     
     // If both attempts fail, try to get a random dog image
-    const randomResponse = await fetch('https://dog.ceo/api/breeds/image/random');
-    const randomData = await randomResponse.json();
+    let randomResponse = await fetch('https://dog.ceo/api/breeds/image/random');
+    let randomData = await randomResponse.json();
     return randomData.status === 'success' ? randomData.message : getDefaultImage();
     
   } catch (error) {
@@ -240,10 +240,10 @@ function createCard(incident) {
   
   // Load dog image after card is added to DOM
   setTimeout(async () => {
-    const imageContainer = card.querySelector(`#dog-image-${incident.unique_key || incident.zipcode}`);
+    let imageContainer = card.querySelector(`#dog-image-${incident.unique_key || incident.zipcode}`);
     if (imageContainer) {
       try {
-        const imageUrl = await getDogImage(incident.breed);
+        let imageUrl = await getDogImage(incident.breed);
         if (imageUrl) {
           imageContainer.innerHTML = `
             <img src="${imageUrl}" alt="${incident.breed || 'Unknown breed'} dog" 
@@ -274,7 +274,7 @@ function createCard(incident) {
 }
 
 function map(){
-  const mymap = L.map('mapid').setView([40.7128, -74.0060], 10);
+  let mymap = L.map('mapid').setView([40.7128, -74.0060], 10);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
@@ -282,7 +282,7 @@ function map(){
         }).addTo(mymap);
 
         // Define locations as an array of objects
-        const locations = [
+        let locations = [
             {
                 name: "DOHMH #1",
                 lat: 40.7542913,
@@ -311,13 +311,13 @@ function map(){
 
         // Loop through the locations and add a marker with a popup for each
         locations.forEach(location => {
-            const marker = L.marker([location.lat, location.lng]).addTo(mymap);
+            let marker = L.marker([location.lat, location.lng]).addTo(mymap);
             marker.bindPopup(`<b>${location.name}</b><br>${location.description}`);
         });
 
         // Optional: Fit the map bounds to include all markers
         // This is useful if you don't know the exact center/zoom beforehand
-        const group = new L.featureGroup(locations.map(location => L.marker([location.lat, location.lng])));
+        let group = new L.featureGroup(locations.map(location => L.marker([location.lat, location.lng])));
         mymap.fitBounds(group.getBounds());
 
 }
